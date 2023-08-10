@@ -11,7 +11,9 @@ import { ReturningUser } from '../models/returning-user.model';
 export class UserService {
   newUserData: NewUser;
   returningUserData: ReturningUser;
-  url: string = environment.apiUrl;
+
+  url: string = "http://localhost:3000"
+  // url: string = environment.apiUrl;
 
   constructor(private myhttp: HttpClient) {}
 
@@ -36,17 +38,27 @@ export class UserService {
 
   createUser(newUser: NewUser): Observable<NewUser> {
     return this.myhttp.post<NewUser>(
-      this.url + '/auth/create',
+      // this.url + '/auth/create',
+      this.url + '/auth',
       newUser,
       this.httpHeader
     );
   }
 
 
+  // loginUser(user: ReturningUser): Observable<any> {
+  //   return this.myhttp.post<ReturningUser>(
+  //     this.url + '/auth/login',
+  //     user,
+  //     this.httpHeader
+  //   );
+  // }
+
+  //this is a bybass for displaying functionlity
+
   loginUser(user: ReturningUser): Observable<any> {
-    return this.myhttp.post<ReturningUser>(
-      this.url + '/auth/login',
-      user,
+    return this.myhttp.get<ReturningUser>(
+      this.url + '/auth',
       this.httpHeader
     );
   }
@@ -55,7 +67,9 @@ export class UserService {
   refreshUser(): Observable<any> {
     let header = this.getHeaderWithToken();
     return this.myhttp.get<any>(
-      this.url + '/auth/refresh',
+      // this.url + '/auth/refresh',
+
+      this.url + '/refresh',
       header
     );
   }
@@ -63,7 +77,8 @@ export class UserService {
   logoutUser(): Observable<any> {
     let header = this.getHeaderWithToken();
     return this.myhttp.get<any>(
-      this.url + '/auth/logout',
+      // this.url + '/auth/logout',
+      this.url + '/logout',
       header
     );
   }

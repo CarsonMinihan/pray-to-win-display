@@ -1,5 +1,5 @@
 <div class="moodInfoContainer">
-    <div class="moodOverDays">
+    <div class="moodOverDays" *ngIf="recent">
         <div class="row">
             <img *ngIf="good" class="emoteImg col-3" src="../../../assets/images/smile-good.png">
             <img *ngIf="neutral" class="emoteImg col-3" src="../../../assets/images/neutral-face.png">
@@ -8,6 +8,12 @@
         <div class="row">
             <p class="emotecaption">Your mood has been mostly {{ mood }} in the past week</p>
         </div> 
+    </div>
+    <div class="moodOverDays" *ngIf="!recent">
+        <p class="emotecaption">Oops, looks like you have no moods this month!</p>
+        <div class="col-sm-12">
+            <button class="homeBtn" routerLink="/dailymood">click here to make one</button>
+        </div>
     </div>
     
 </div>

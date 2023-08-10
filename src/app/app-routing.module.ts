@@ -9,8 +9,10 @@ import { MoodInfoComponent } from './pages/mood-info/mood-info.component';
 import { AuthGuard } from './shared/services/authservices/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'journal', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+
+
   { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard]},
   { path: 'journal', component: JournalComponent, canActivate: [AuthGuard]},
   { path: 'dailymood', component: DailyMoodChangesComponent, canActivate: [AuthGuard]},

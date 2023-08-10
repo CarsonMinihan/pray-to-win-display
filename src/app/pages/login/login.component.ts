@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
   // this handles both LOGIN & CREATE
   // this part checks if you are making an account or logging in
   handleForm() {
+
     if (this.createAccount) {
       console.log('CREATING ACCOUNT');
 
@@ -110,11 +111,14 @@ export class LoginComponent implements OnInit {
   // this is the code that will actually log you in and assign you user token and the expiration of the token to your local storage
   loginSubmit(userData): void {
     this.myUserService.loginUser(userData).subscribe(
+      
       (res) => {
         console.log(res);
         if (res.success) this.ui.showToastMessage(res.message);
-        if (res.data.token) {
-          localStorage.setItem('UserToken', res.data.token);
+        // if (res.data.token) {
+          if (res.token) {
+          // localStorage.setItem('UserToken', res.data.token);
+          localStorage.setItem('UserToken', res.token);
           // 30 minutes is 1800000
           let expiration = Date.now() + 3000000;
           localStorage.setItem('tokenExpiration', expiration.toString());

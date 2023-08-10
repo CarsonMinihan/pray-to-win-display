@@ -27,10 +27,14 @@ export class MoodArray extends BackendResponse {
 }
 
 export class UpdateMood {
-  id: string;
+  _id: string;
   mood: number;
   makeChanges: number;
   details: string;
+
+  
+  date?: number;
+  changes?: boolean;
 }
 
 export class NumberOfChanges extends BackendResponse{

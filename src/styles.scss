@@ -19,6 +19,10 @@ body {
   background-size: cover;
 }
 
+html {
+  overflow-y:scroll;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;

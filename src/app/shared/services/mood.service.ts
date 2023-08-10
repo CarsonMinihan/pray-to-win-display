@@ -10,16 +10,20 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class MoodService {
-  url: string = environment.apiUrl;
-  moodObjectFRBK: MoodObjectFRBK;
+  url: string = "http://localhost:3000";
+
+  moodObjectFRBK: Mood;
+  // moodObjectFRBK: MoodObjectFRBK;
 
   constructor(private myhttp: HttpClient, public userService: UserService) { }
 
 
   createMood(newMood: Mood): Observable<MoodObjectFRBK> {
     let header = this.userService.getHeaderWithToken();
+    
     return this.myhttp.post<MoodObjectFRBK>(
-      this.url + '/mood/create',
+      // this.url + '/mood/create',
+      this.url + '/mood',
       newMood,
       header
     );
@@ -29,16 +33,18 @@ export class MoodService {
   getMoods(): Observable<MoodArray> {
     let header = this.userService.getHeaderWithToken();
     return this.myhttp.get<MoodArray>(
-      this.url + '/mood/read',
+      // this.url + '/mood/read',
+      this.url + '/mood',
       header
     )
   }
 
   getMoodsBetween(date1: Number, date2: Number): Observable<MoodArray> {
     let header = this.userService.getHeaderWithToken();
-    return this.myhttp.post<MoodArray>(
-      this.url + '/mood/rbd',
-      { date1, date2 },
+    return this.myhttp.get<MoodArray>(
+      // this.url + '/mood/rbd',
+      this.url + '/mood',
+      // { date1, date2 },
       header
     )
   }
@@ -46,7 +52,8 @@ export class MoodService {
   updateMood(updateMood: UpdateMood): Observable<MoodObjectFRBK> {
     let header = this.userService.getHeaderWithToken();
     return this.myhttp.put<MoodObjectFRBK>(
-      this.url + '/mood/update',
+      // this.url + '/mood/update',
+      this.url + '/mood/' + updateMood._id,
       updateMood,
       header
     );
@@ -54,9 +61,8 @@ export class MoodService {
 
   deleteMood(id): Observable<MoodObjectFRBK> {
     let header = this.userService.getHeaderWithToken();
-    return this.myhttp.post<MoodObjectFRBK>(
-      this.url + '/mood/delete',
-      { id },
+    return this.myhttp.delete<MoodObjectFRBK>(
+      this.url + '/mood/' + id,
       header
     );
   }

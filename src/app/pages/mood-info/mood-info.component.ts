@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { endOfDay, startOfDay } from 'date-fns';
 import { MoodService } from 'src/app/shared/services/mood.service';
 import { UiService } from 'src/app/shared/services/ui.service';
 
@@ -12,10 +13,26 @@ export class MoodInfoComponent implements OnInit {
   neutral: boolean = false;
   bad: boolean = false;
   mood: string = "LOADING";
+  recent: boolean = false;
 
   constructor(public moodService: MoodService, public ui: UiService) { }
 
   ngOnInit(): void {
+    var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    
+    //gets first day of the month
+    var firstDay = startOfDay(new Date(y, m, 1)).getTime();
+
+    //gets last day of month
+    var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
+
+    this.moodService.getMoodsBetween(firstDay, lastDay).subscribe((res) => {
+      let resData = res.data;
+      if(resData.length !== 0){
+        this.recent = true;
+      }
+      console.log(this.recent);
+    })
     this.moodService.avgMoodWeek().subscribe((res) => {
       if(res.success){
         if(res.data > 0.5){

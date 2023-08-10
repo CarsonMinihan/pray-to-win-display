@@ -102,10 +102,18 @@ export class CalendarComponent implements OnInit {
     var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
 
     this.moodService.getMoodsBetween(firstDay, lastDay).subscribe((res) => {
-      let resData = res.data;
+
+      var length_object = Object.keys(res).length;
+      
+      let resData = res;
+      
+      // console.log(res[1]._id)
       
       
-      for (let i = 0; i < resData.length; i++) {
+      for (let i = 0; i < length_object; i++) {
+
+       
+        
         this.data.push(resData[i]);
         let calendarItem = {
           start: new Date(resData[i].date),
@@ -116,7 +124,8 @@ export class CalendarComponent implements OnInit {
           id: resData[i]._id,
           changes: true
         }
-
+        // console.log (calendarItem.id)
+        
         calendarItem.changes = resData[i].changes;
 
         switch (resData[i].mood) {
@@ -150,7 +159,7 @@ export class CalendarComponent implements OnInit {
         }
 
 
-        console.log(calendarItem);
+        // console.log(calendarItem);
         this.events.push(calendarItem);
 
 
@@ -168,10 +177,12 @@ export class CalendarComponent implements OnInit {
     var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
 
     this.moodService.getMoodsBetween(firstDay, lastDay).subscribe((res) => {
-      let resData = res.data;
+
+      var length_object = Object.keys(res).length;
+      let resData = res;
       
       
-      for (let i = 0; i < resData.length; i++) {
+      for (let i = 0; i < length_object; i++) {
         this.data.push(resData[i]);
         let calendarItem = {
           start: new Date(resData[i].date),
@@ -231,10 +242,11 @@ export class CalendarComponent implements OnInit {
 
   saveEdit(){
     this.editMood = false;
-    let item: any = this.events.find(i => i.id === this.editedObj.id);
+    console.log(this.editedObj._id)
+    let item: any = this.events.find(i => i.id === this.editedObj._id);
     //gets all items from the events array that have the same id
 
-    let resObj = this.data.find(i => i._id === this.editedObj.id);
+    let resObj = this.data.find(i => i._id === this.editedObj._id);
     //gets all items from the data array that have the same id
     //this is what needs to be sent to the backend
 
@@ -278,7 +290,11 @@ export class CalendarComponent implements OnInit {
       item.details = "";
     }
 
+    this.editedObj.date == resObj.date;
+    this.editedObj.changes == resObj.changes;
+
     console.log(this.editedObj);
+    console.log(resObj);
 
     this.moodService.updateMood(this.editedObj).subscribe(res => {
       console.log(res);
@@ -305,14 +321,19 @@ export class CalendarComponent implements OnInit {
   }
 
   handleEvent(event: any): void {
+    console.log(event)
     let details = event.details;
     let title = event.title;
     let id = event.id;
     let mood = event.mood;
     this.modalData = { details, title, id, mood };
     this.modal.open(this.modalContent, { size: 'lg' });
+    
 
+    // let editedObjArray = this.data.filter((data) => data._id === this.modalData.id);
     let editedObjArray = this.data.filter((data) => data._id === this.modalData.id);
+    
+    console.log(editedObjArray)
     let editedObjItem = editedObjArray[0]
     if(editedObjItem.changes){
       this.hasChanges = true;
@@ -322,7 +343,9 @@ export class CalendarComponent implements OnInit {
     }
 
     this.editedObj = {
-      id: editedObjItem._id,
+      changes: editedObjItem.changes,
+      date: editedObjItem.date,
+      _id: editedObjItem._id,
       mood: editedObjItem.mood,
       makeChanges: editedObjItem.makeChanges,
       details: editedObjItem.details,
@@ -341,9 +364,14 @@ export class CalendarComponent implements OnInit {
         this.ui.showToastMessage('Mood Successfully Deleted', "primary");
       }
       else {
-        this.ui.showToastMessage(res.message, "danger");
+
+        //disabled for display version
+        //this.ui.showToastMessage(res.message, "danger");
+        this.refresh
       }
-      
+      this.modal.dismissAll();
+      this.getMoodsForOneMonth();
+      this.closeOpenMonthViewDay();
     });
   }
   editToFalse(){

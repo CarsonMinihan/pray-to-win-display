@@ -54,6 +54,9 @@
   border-radius: 10px;
   vertical-align: top;
 }
+::ng-deep ngb-modal-backdrop {
+  z-index: 1050 !important;
+}
 
   @media (max-width: 520px) {
     h3 {

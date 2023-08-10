@@ -1,0 +1,50 @@
+{
+  "mood": [
+    {
+      "changes": true,
+      "makeChanges": 3,
+      "mood": 0,
+      "details": "fdgdfgdf",
+      "date": 1690044679089,
+      "_id": 3
+    },
+    {
+      "changes": true,
+      "makeChanges": 5,
+      "mood": -1,
+      "details": "this change",
+      "date": 1690099673149,
+      "_id": 4
+    },
+    {
+      "changes": true,
+      "makeChanges": 7,
+      "mood": 1,
+      "details": "got parts of \"fake\" backend working",
+      "date": 1690302747013,
+      "_id": 5
+    },
+    {
+      "changes": true,
+      "makeChanges": 7,
+      "mood": 0,
+      "details": "working on database",
+      "date": 1690388308777,
+      "_id": 6
+    },
+    {
+      "changes": false,
+      "makeChanges": 7,
+      "mood": 0,
+      "date": 1690389915967,
+      "details": "",
+      "_id": 7
+    }
+  ],
+  "auth": {
+    "token": "new_token"
+  },
+  "refresh": {
+    "token": "refreshed_token"
+  }
+}
