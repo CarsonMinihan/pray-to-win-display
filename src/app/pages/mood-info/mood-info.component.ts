@@ -27,14 +27,20 @@ export class MoodInfoComponent implements OnInit {
     var lastDay = endOfDay(new Date(y, m + 1, 0)).getTime();
 
     this.moodService.getMoodsBetween(firstDay, lastDay).subscribe((res) => {
+     
+
+      var length_object = Object.keys(res).length;
       let resData = res.data;
-      if(resData.length !== 0){
+
+      
+      if(length_object !== 0){
         this.recent = true;
       }
       console.log(this.recent);
     })
     this.moodService.avgMoodWeek().subscribe((res) => {
-      if(res.success){
+      console.log(res)
+      if(res.data){
         if(res.data > 0.5){
           this.good = true;
           this.mood = "good"

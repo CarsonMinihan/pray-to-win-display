@@ -69,9 +69,10 @@ export class MoodService {
 
   numberOfChanges(date1: Number): Observable<NumberOfChanges> {
     let header = this.userService.getHeaderWithToken();
-    return this.myhttp.post<NumberOfChanges>(
-      this.url + '/mood/year',
-      { date1 },
+    return this.myhttp.get<NumberOfChanges>(
+      //this.url + '/mood/year',
+      this.url + '/changes',
+      // { date1 },
       header
     )
   }
@@ -79,7 +80,8 @@ export class MoodService {
   avgMoodWeek(): Observable<AvgMood>{
     let header = this.userService.getHeaderWithToken();
     return this.myhttp.get<AvgMood>(
-      this.url + '/mood/week',
+      // this.url + '/mood/week',
+      this.url + '/avg',
       header
     )
   }

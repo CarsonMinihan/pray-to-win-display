@@ -39,6 +39,14 @@
       "date": 1690389915967,
       "details": "",
       "_id": 7
+    },
+    {
+      "changes": false,
+      "makeChanges": 7,
+      "mood": 0,
+      "date": 1691686032725,
+      "details": "",
+      "_id": 9
     }
   ],
   "auth": {
@@ -46,5 +54,20 @@
   },
   "refresh": {
     "token": "refreshed_token"
+  },
+  "changes": {
+    "data": {
+      "numOfDiet": 8,
+      "numOfRoutine": 19,
+      "numOfExercise": 2,
+      "numOfSleep": 2,
+      "numOfHygiene": 5,
+      "numOfSocial": 3,
+      "numOfOther": 7,
+      "numOfDays": 46
+    }
+  },
+  "avg": {
+    "data": 1
   }
 }
