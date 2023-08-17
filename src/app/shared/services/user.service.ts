@@ -37,12 +37,18 @@ export class UserService {
   }
 
   createUser(newUser: NewUser): Observable<NewUser> {
-    return this.myhttp.post<NewUser>(
+    this.myhttp.post<NewUser>(
       // this.url + '/auth/create',
       this.url + '/auth',
       newUser,
       this.httpHeader
-    );
+    )
+    // added for display funtionality
+    return this.myhttp.get<NewUser>(
+      // this.url + '/auth/create',
+      this.url + '/auth?name_like=' + newUser.name,
+      this.httpHeader
+    )
   }
 
 

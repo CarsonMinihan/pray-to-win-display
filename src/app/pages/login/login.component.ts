@@ -112,13 +112,17 @@ export class LoginComponent implements OnInit {
   loginSubmit(userData): void {
     this.myUserService.loginUser(userData).subscribe(
       
+      
       (res) => {
         console.log(res);
         if (res.success) this.ui.showToastMessage(res.message);
         // if (res.data.token) {
-          if (res.token) {
+        // if (res.token) {
+          if (res) {
           // localStorage.setItem('UserToken', res.data.token);
-          localStorage.setItem('UserToken', res.token);
+          // localStorage.setItem('UserToken', res.token);
+          localStorage.setItem('UserToken', "token");
+
           // 30 minutes is 1800000
           let expiration = Date.now() + 3000000;
           localStorage.setItem('tokenExpiration', expiration.toString());

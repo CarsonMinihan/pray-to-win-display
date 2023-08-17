@@ -47,10 +47,29 @@
       "date": 1691686032725,
       "details": "",
       "_id": 9
+    },
+    {
+      "changes": false,
+      "date": 1692288127534,
+      "_id": 10,
+      "mood": 1,
+      "makeChanges": 7,
+      "details": ""
+    },
+    {
+      "changes": true,
+      "date": 1692289762403,
+      "_id": 13,
+      "mood": -1,
+      "makeChanges": 4,
+      "details": "made a sleep change"
     }
   ],
   "auth": {
-    "token": "new_token"
+    "username": "tester",
+    "name": "full name",
+    "password": "123",
+    "email": "just.test@mail.com"
   },
   "refresh": {
     "token": "refreshed_token"
