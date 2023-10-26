@@ -8,4 +8,6 @@ Then run "json-server --id _id db.json" this will start the 'fake' backend
 
 Then in a seperate terminal run "ng serve --o" this will open the page
 
-If you'd like to view a video of this page showing the functionality then please visit my linkedin post: https://www.linkedin.com/posts/carson-minihan_just-recently-made-a-display-version-of-activity-7097980052704792576-GwrI?utm_source=share&utm_medium=member_desktop
+If you'd like to view a video of this page showing the functionality then please visit my youtube post: https://youtu.be/qzB5RJyAlic
+
+My linkedIn account: https://www.linkedin.com/in/carson-minihan/
